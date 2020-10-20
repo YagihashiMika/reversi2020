@@ -1,4 +1,4 @@
-
+import random
 #
 # オセロ（リバーシ） 6x6
 #
@@ -108,6 +108,7 @@ def can_play(board, color):
   return False
 
 
+
 def game(player1, player2):
 	board = init_board()
 	show_board(board)
@@ -128,10 +129,19 @@ def game(player1, player2):
 			on_gaming = put_and_reverse(board, position, WHITE)
 	show_board(board)  # 最後の結果を表示!
 
+
+def rand(board, color): #おチビAI
+  for i in range(999):
+    position = random.choice(list(range(N*N)))
+    if put_and_reverse(board, position, color):
+      return position
+  return 0
+
+
 def ochibi(board, color): #おチビAI
   for position in range(N*N):
     if put_and_reverse(board, position, color):
       return position
   return 0
 
-game(ochibi, ochibi)
+game(rand, ochibi)
